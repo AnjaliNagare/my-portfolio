@@ -53,7 +53,7 @@ export const projects: Project[] = [
       '/Mindmirror3.png',
     ],
     liveUrl: 'AppDemo.mp4',
-    githubUrl: 'https://github.com/caramueting/techlabs_hh_webdev_group4',
+    githubUrl: 'https://github.com/AnjaliNagare/MindMirror',
   },
   {
     id: 'uxbuddy',
@@ -150,8 +150,8 @@ export const projects: Project[] = [
       '/portfolio2.png'
     ],
 
-    liveUrl: '', 
-    githubUrl: 'https://github.com/AnjaliNagare', // or repo link
+    liveUrl: 'https://anjalinagare-portfolio.vercel.app/', 
+    githubUrl: 'https://github.com/AnjaliNagare/my-portfolio', // or repo link
   },
 
 ]
