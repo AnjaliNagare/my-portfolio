@@ -1,0 +1,178 @@
+export interface Project {
+  id: string
+  title: string
+  tagline: string
+  description: string
+  image: string
+  problem: string
+  solution: string
+  features: { icon: string; title: string; description: string }[]
+  techStack: string[]
+  screenshots: string[]
+  liveUrl: string
+  githubUrl: string
+}
+
+export const projects: Project[] = [
+  {
+    id: 'mind-mirror',
+    title: 'Mind Mirror',
+    tagline: 'Mental Health Journal',
+    description: 'Mind Mirror is a digital journaling platform that helps users reflect on emotions, track moods, and build healthier mental habits. It encourages self-awareness through daily entries, future letters, and accessible mental health resources.',
+    image: '/Mindmirror.png',
+    problem: 'Many people struggle to consistently track their mental health and emotions due to lack of simple and engaging tools.',
+    solution:  'Built an intuitive journaling platform that allows users to log moods, write reflections, and schedule future letters, helping them build self-awareness and emotional consistency.',
+    
+    features: [
+      {
+        icon: 'Smile',
+        title: 'Mood Tracking',
+        description: 'Track daily emotions using simple and interactive UI elements',
+      },
+      {
+        icon: 'BookOpen',
+        title: 'Daily Journaling',
+        description: 'Write and save personal reflections securely',
+      },
+      {
+        icon: 'Clock',
+        title: 'Future Letters',
+        description: 'Schedule messages to your future self',
+      },
+      {
+        icon: 'Heart',
+        title: 'Wellness Focus',
+        description: 'Encourages positive mental health habits',
+      },
+    ],
+    techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Bootstrap'],
+    screenshots: [
+      '/Mindmirror2.png',
+      '/Mindmirror.png',
+      '/Mindmirror1.png',
+      '/Mindmirror3.png',
+    ],
+    liveUrl: 'AppDemo.mp4',
+    githubUrl: 'https://github.com/caramueting/techlabs_hh_webdev_group4',
+  },
+  {
+    id: 'uxbuddy',
+    title: 'UX Buddy – AI-Powered UX Writing Assistant',
+    tagline: 'Generate better UX copy with AI assistance',
+    description:
+      'An AI-powered tool that helps designers and developers generate UX microcopy, error messages, and user-friendly content.',
+
+    image: '/uxbuddy2.png',
+
+    problem:
+      'Writing effective UX copy is time-consuming and challenging, especially for developers without UX writing expertise.',
+
+    solution:
+      'Developed an AI-powered assistant that generates contextual UX copy, improving user experience and saving time.',
+
+    features: [
+      {
+        icon: 'MessageSquare',
+        title: 'AI Copy Generation',
+        description: 'Generate UX microcopy instantly using AI',
+      },
+      {
+        icon: 'AlertCircle',
+        title: 'Error Messages',
+        description: 'Create clear and user-friendly error messages',
+      },
+      {
+        icon: 'Accessibility',
+        title: 'Accessibility Support',
+        description: 'Suggest inclusive and accessible UX text',
+      },
+      {
+        icon: 'Zap',
+        title: 'Quick Suggestions',
+        description: 'Get instant suggestions for UI text improvements',
+      },
+    ],
+
+    techStack: ['React', 'ExpressJs', 'NodeJs', 'Local AI with Ollama'],
+
+    screenshots: [
+      '/Uxbuddy.png',
+      '/uxbuddy2.png',
+    ],
+
+    liveUrl: '', 
+    githubUrl: 'https://github.com/AnjaliNagare/ux-buddy',
+  },
+  
+  {
+    id: 'portfolio',
+    title: 'Personal Portfolio Website',
+    tagline: 'A modern developer portfolio showcasing my work',
+    description:
+      'A responsive and modern portfolio website designed to showcase my projects, skills, and experience in an engaging and visually appealing way.',
+
+    image: '/portfolio.png',
+
+    problem:
+      'Developers need a professional online presence to effectively showcase their work and stand out to recruiters.',
+
+    solution:
+      'Designed and developed a clean, responsive portfolio with project showcases, detailed pages, and smooth navigation to present my work effectively.',
+
+    features: [
+      {
+        icon: 'Layout',
+        title: 'Modern UI',
+        description: 'Clean and visually appealing design',
+      },
+      {
+        icon: 'Layers',
+        title: 'Project Showcase',
+        description: 'Detailed project pages with structured information',
+      },
+      {
+        icon: 'Smartphone',
+        title: 'Responsive Design',
+        description: 'Fully optimized for mobile and desktop',
+      },
+      {
+        icon: 'Zap',
+        title: 'Fast Performance',
+        description: 'Optimized for speed and smooth experience',
+      },
+    ],
+
+    techStack: ['React', 'Tailwind CSS', 'Vite', 'React Router'],
+
+    screenshots: [
+      '/portfolio.png',
+      '/portfolio1.png',
+      '/portfolio2.png'
+    ],
+
+    liveUrl: '', 
+    githubUrl: 'https://github.com/AnjaliNagare', // or repo link
+  },
+
+]
+
+export const skills = [
+  { name: 'React', category: 'Frontend' },
+  { name: 'TypeScript', category: 'Language' },
+  { name: 'Javascript', category: 'Language' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'Python', category: 'Language' },
+  { name: 'PostgreSQL', category: 'Database' },
+  { name: 'MongoDB', category: 'Database' },
+  { name: 'REST API', category: 'Backend'},
+  { name: 'Tailwind CSS', category: 'Styling' },
+  { name: 'Bootstrap', category: 'Styling' },
+  { name: 'Figma', category: 'Design' },
+
+]
+
+export const socialLinks = {
+  github: 'https://github.com',
+  linkedin: 'https://linkedin.com',
+  email: 'anjalinagare20@gmail.com',
+}
