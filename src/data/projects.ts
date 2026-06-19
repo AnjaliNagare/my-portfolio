@@ -153,6 +153,77 @@ export const projects: Project[] = [
     liveUrl: 'https://anjalinagare-portfolio.vercel.app/', 
     githubUrl: 'https://github.com/AnjaliNagare/my-portfolio', // or repo link
   },
+     {
+    id: 'german-vocab-app',
+    title: 'German Vocabulary Learning App',
+    tagline: 'Spaced repetition vocabulary trainer with AI-generated example sentences',
+    description:
+      'A full-stack language learning app that uses the SM-2 spaced repetition algorithm to schedule vocabulary reviews at scientifically optimal intervals, with AI-generated German example sentences to reinforce words you struggle to recall.',
+
+    image: '/german-vocab-app.png',
+
+    problem:
+      'Language learners often forget vocabulary shortly after learning it because they review words at random intervals instead of the moments when memory is about to fade.',
+
+    solution:
+      'Built a spaced repetition system (the same algorithm behind Anki) that tracks each word\'s recall history and automatically schedules the next review at the optimal moment — with AI stepping in to generate a contextual example sentence whenever a word is forgotten.',
+
+    features: [
+      {
+        icon: 'Brain',
+        title: 'SM-2 Spaced Repetition',
+        description: 'Dynamically schedules reviews based on recall ratings and ease factor',
+      },
+      {
+        icon: 'Sparkles',
+        title: 'AI Example Sentences',
+        description: 'Groq (Llama 3) generates contextual German sentences on forgotten words',
+      },
+      {
+        icon: 'LayoutDashboard',
+        title: 'Progress Dashboard',
+        description: 'Tracks streaks, due words, and review history with live charts',
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Secure Authentication',
+        description: 'JWT-based auth with bcrypt password hashing',
+      },
+      {
+        icon: 'Container',
+        title: 'Dockerized Full Stack',
+        description: 'One-command local setup with Docker + docker-compose',
+      },
+      {
+        icon: 'GitBranch',
+        title: 'CI/CD Pipeline',
+        description: 'GitHub Actions runs tests and build checks on every push',
+      },
+    ],
+
+    techStack: [
+      'React',
+      'Vite',
+      'Node.js',
+      'Express.js',
+      'PostgreSQL',
+      'JWT',
+      'Groq API',
+      'Ollama',
+      'Docker',
+      'GitHub Actions',
+    ],
+
+    screenshots: [
+      '/german-vocab-app.png',
+      '/german-vocab-app1.png',
+      '/german-vocab-app2.png',
+    ],
+
+    liveUrl: 'https://german-vocab-app-frontend.onrender.com',
+    githubUrl: 'https://github.com/AnjaliNagare/german-vocab-app',
+  },
+  
 
 ]
 
