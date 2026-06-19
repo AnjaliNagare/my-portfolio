@@ -160,7 +160,7 @@ export const projects: Project[] = [
     description:
       'A full-stack language learning app that uses the SM-2 spaced repetition algorithm to schedule vocabulary reviews at scientifically optimal intervals, with AI-generated German example sentences to reinforce words you struggle to recall.',
 
-    image: '/german-vocab-app.png',
+    image: '/german-vocab-app1.png',
 
     problem:
       'Language learners often forget vocabulary shortly after learning it because they review words at random intervals instead of the moments when memory is about to fade.',
@@ -218,6 +218,7 @@ export const projects: Project[] = [
       '/german-vocab-app.png',
       '/german-vocab-app1.png',
       '/german-vocab-app2.png',
+      '/german-vocab-app3.png',
     ],
 
     liveUrl: 'https://german-vocab-app-frontend.onrender.com',
