@@ -108,7 +108,7 @@ export function Contact() {
             </motion.div>
 
             {/* Contact Form */}
-            <motion.div variants={itemVariants}>
+           {/* <motion.div variants={itemVariants}>
               <form onSubmit={handleSubmit} className="p-8 rounded-3xl glass">
                 {isSubmitted ? (
                   <motion.div
@@ -198,7 +198,7 @@ export function Contact() {
                   </>
                 )}
               </form>
-            </motion.div>
+            </motion.div> */}
           </div>
         </motion.div>
       </div>
