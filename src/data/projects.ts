@@ -244,7 +244,7 @@ export const skills = [
 ]
 
 export const socialLinks = {
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
+  github: 'https://github.com/AnjaliNagare',
+  linkedin: 'www.linkedin.com/in/anjali-nagare-53b818190',
   email: 'anjalinagare20@gmail.com',
 }
