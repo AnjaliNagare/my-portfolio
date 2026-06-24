@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Send, MapPin, Clock, CheckCircle } from 'lucide-react'
+import { Mail, Send, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 import { socialLinks } from '@/data/projects'
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 }
 
@@ -18,22 +17,46 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 }
 
+// Grab keys from env
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
 export function Contact() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     message: '',
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setIsSubmitted(true)
-    setTimeout(() => {
-      setIsSubmitted(false)
+    setStatus('loading')
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name:  formState.name,
+          from_email: formState.email,
+          message:    formState.message,
+        },
+        PUBLIC_KEY
+      )
+
+      setStatus('success')
       setFormState({ name: '', email: '', message: '' })
-    }, 3000)
+
+      // Reset back to idle after 4 seconds
+      setTimeout(() => setStatus('idle'), 4000)
+
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
 
   return (
@@ -58,7 +81,7 @@ export function Contact() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
+            {/* Contact Info - unchanged */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold mb-6">
@@ -66,13 +89,12 @@ export function Contact() {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Whether you have a project in mind, want to collaborate, or just
-                  want to say hi, {"I'd"} love to hear from you. Feel free to reach
-                  out through any of the channels below.
+                  want to say hi, {"I'd"} love to hear from you.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <a
+                
                   href={`mailto:${socialLinks.email}`}
                   className="flex items-center gap-4 p-4 rounded-2xl glass hover:bg-secondary transition-colors group"
                 >
@@ -108,9 +130,11 @@ export function Contact() {
             </motion.div>
 
             {/* Contact Form */}
-           {/* <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants}>
               <form onSubmit={handleSubmit} className="p-8 rounded-3xl glass">
-                {isSubmitted ? (
+
+                {/* Success state */}
+                {status === 'success' && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -124,14 +148,31 @@ export function Contact() {
                       Thanks for reaching out. {"I'll"} get back to you soon.
                     </p>
                   </motion.div>
-                ) : (
+                )}
+
+                {/* Error state */}
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
+                  >
+                    <div className="p-4 rounded-full bg-red-500/10 text-red-500 mb-4">
+                      <AlertCircle className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Something went wrong</h3>
+                    <p className="text-muted-foreground">
+                      Please try again or email me directly.
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* Form fields — shown when idle or loading */}
+                {(status === 'idle' || status === 'loading') && (
                   <>
                     <div className="space-y-6">
                       <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium mb-2"
-                        >
+                        <label htmlFor="name" className="block text-sm font-medium mb-2">
                           Name
                         </label>
                         <input
@@ -139,19 +180,14 @@ export function Contact() {
                           id="name"
                           required
                           value={formState.name}
-                          onChange={(e) =>
-                            setFormState({ ...formState, name: e.target.value })
-                          }
+                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                           placeholder="Your name"
                         />
                       </div>
 
                       <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium mb-2"
-                        >
+                        <label htmlFor="email" className="block text-sm font-medium mb-2">
                           Email
                         </label>
                         <input
@@ -159,19 +195,14 @@ export function Contact() {
                           id="email"
                           required
                           value={formState.email}
-                          onChange={(e) =>
-                            setFormState({ ...formState, email: e.target.value })
-                          }
+                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                           placeholder="your@email.com"
                         />
                       </div>
 
                       <div>
-                        <label
-                          htmlFor="message"
-                          className="block text-sm font-medium mb-2"
-                        >
+                        <label htmlFor="message" className="block text-sm font-medium mb-2">
                           Message
                         </label>
                         <textarea
@@ -179,9 +210,7 @@ export function Contact() {
                           required
                           rows={5}
                           value={formState.message}
-                          onChange={(e) =>
-                            setFormState({ ...formState, message: e.target.value })
-                          }
+                          onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
                           placeholder="Tell me about your project..."
                         />
@@ -190,15 +219,29 @@ export function Contact() {
 
                     <button
                       type="submit"
-                      className="w-full mt-6 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+                      disabled={status === 'loading'}
+                      className="w-full mt-6 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4" />
-                      Send Message
+                      {status === 'loading' ? (
+                        <>
+                          <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Send Message
+                        </>
+                      )}
                     </button>
                   </>
                 )}
+
               </form>
-            </motion.div> */}
+            </motion.div>
           </div>
         </motion.div>
       </div>
