@@ -54,7 +54,7 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="text-xl md:text-2xl text-muted-foreground font-medium"
           >
-            Frontend Developer | Building AI-powered web apps
+            Junior Fullstack Developer | Building AI-powered web apps
           </motion.p>
 
           {/* Tagline */}
