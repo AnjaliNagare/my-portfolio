@@ -94,7 +94,7 @@ export function Contact() {
               </div>
 
               <div className="space-y-4">
-                
+                <a
                   href={`mailto:${socialLinks.email}`}
                   className="flex items-center gap-4 p-4 rounded-2xl glass hover:bg-secondary transition-colors group"
                 >
